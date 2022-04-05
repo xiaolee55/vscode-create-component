@@ -52,5 +52,7 @@ export const {{componentName}}Example = () => '<{{componentName}} />';
 import {{componentName}} from './{{componentName}}.vue';
 export default {{componentName}};    
 `,
-    STYLING: ``
+    STYLING: ``,
+    TESTCASES:  ``,
+    MOCK: ``
 };
