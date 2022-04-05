@@ -1,6 +1,6 @@
 {
 	"name": "create-component",
-	"displayName": "Create Component",
+	"displayName": "【fbit】创建组件",
 	"author": {
 		"name": "Pranshu Agrawal",
 		"email": "pranshu.a.11@gmail.com",
@@ -41,7 +41,7 @@
 		"commands": [
 			{
 				"command": "extension.createComponent",
-				"title": "Create Component"
+				"title": "【fbit】创建组件"
 			}
 		],
 		"menus": {

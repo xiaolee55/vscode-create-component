@@ -7,7 +7,7 @@ import { FILE } from 'dns';
 
 export const buildReactTemplate = (config: any, componentName: string, cPath: string) => {
     
-    let stylingExtension = config.includes(CONSTANTS.FEATURES.STYLING_SCSS) ? ".scss" : ".css";
+    let stylingExtension = config.includes(CONSTANTS.FEATURES.STYLING_LESS) ? ".less" : ".css";
     let indexExtension = config.includes(CONSTANTS.FEATURES.TS) ? ".ts" : ".js";
     let componentExtension = `${indexExtension}x`;
 

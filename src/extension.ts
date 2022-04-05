@@ -39,25 +39,30 @@ const execute = ({fsPath}: {fsPath: string}) => {
 	};
  
 	const frameworkSelection = [
-		CONSTANTS.FRAMEWORKS.REACTJS,
-		CONSTANTS.FRAMEWORKS.VUEJS,
-		CONSTANTS.FRAMEWORKS.REACTNATIVE
+		CONSTANTS.FRAMEWORKS.UNIAPP,
+		CONSTANTS.FRAMEWORKS.VUEJS
 	];
 
 	const frameworkSelectionOptions = {
 		canPickMany: false,
-		placeHolder: "Select Framework / Library",
+		placeHolder: "选择框架",
 		ignoreFocusOut: true
 	};
 
 	const featureSelection = [
 		CONSTANTS.FEATURES.TS,
-		CONSTANTS.FEATURES.STORYBOOK
+		CONSTANTS.FEATURES.STYLING_LESS,
+		CONSTANTS.FEATURES.STORYBOOK,
+		CONSTANTS.FEATURES.TESTCASES,
+		CONSTANTS.FEATURES.Mock,
+		CONSTANTS.FEATURES.HAI_QUE,
+		CONSTANTS.FEATURES.ZH_TAI,
+		CONSTANTS.FEATURES.MONITOR,
 	];
 
 	const featureSelectionOptions = {
 		canPickMany: true,
-		placeHolder: "Select features to be included",
+		placeHolder: "选择需要包含的组件要素",
 		ignoreFocusOut: true
 	};
 
@@ -68,10 +73,6 @@ const execute = ({fsPath}: {fsPath: string}) => {
 			return;
 		}
 
-		if(selectedFramework !== CONSTANTS.FRAMEWORKS.REACTNATIVE){
-			featureSelection.push(CONSTANTS.FEATURES.STYLING_SCSS);
-		}
-
 		vscode.window.showQuickPick(featureSelection, featureSelectionOptions).then(selectedFeatures=> {
 			vscode.window.showInputBox(componentNameOptions).then(componentName => {
 
@@ -79,14 +80,11 @@ const execute = ({fsPath}: {fsPath: string}) => {
 					const ComponentFolder = path.join(fsPath, componentName);
 					try {
 						fs.mkdirSync(ComponentFolder);
-						if(selectedFramework === CONSTANTS.FRAMEWORKS.REACTJS){
-							buildReactTemplate(selectedFeatures, componentName, ComponentFolder);
+						if(selectedFramework === CONSTANTS.FRAMEWORKS.UNIAPP){
+							buildVueTemplate(selectedFeatures, componentName, ComponentFolder);
 						}
 						else if(selectedFramework === CONSTANTS.FRAMEWORKS.VUEJS){
 							buildVueTemplate(selectedFeatures, componentName, ComponentFolder);
-						}
-						else if(selectedFramework === CONSTANTS.FRAMEWORKS.REACTNATIVE){
-							buildReactNativeTemplate(selectedFeatures, componentName, ComponentFolder);
 						}
 					}
 					catch(error) {

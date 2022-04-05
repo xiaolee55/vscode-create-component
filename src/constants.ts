@@ -1,13 +1,16 @@
 export const CONSTANTS = {
     FRAMEWORKS: {
-        REACTJS: "ReactJS",
         VUEJS: "VueJS",
-        REACTNATIVE: "React Native",
+        UNIAPP: "UniApp",
     },
     FEATURES: {
-        TS: "Use Typescript",
-        STORYBOOK: "Include Storybook File",
-        TESTCASES: "Include TestCase File",
-        STYLING_SCSS: "Using SCSS?",
+        STYLING_LESS: "Less",
+        TS: "Typescript",
+        STORYBOOK: "组件Storybook文档",
+        TESTCASES: "组件测试用例",
+        Mock: '组件Mock文件',
+        HAI_QUE: '海雀埋点配置',
+        ZH_TAI: '中台组件配置',
+        MONITOR: '组件监控配置',
     }
 }

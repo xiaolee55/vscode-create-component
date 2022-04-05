@@ -6,7 +6,7 @@ import { CONSTANTS } from '../constants';
 
 export const buildVueTemplate = (config: any, componentName: string, cPath: string) => {
     
-    let stylingExtension = config.includes(CONSTANTS.FEATURES.STYLING_SCSS) ? ".scss" : ".css";
+    let stylingExtension = config.includes(CONSTANTS.FEATURES.STYLING_LESS) ? ".less" : ".css";
     let indexExtension = config.includes(CONSTANTS.FEATURES.TS) ? ".ts" : ".js";
     let componentExtension = `.vue`;
 
@@ -17,8 +17,9 @@ export const buildVueTemplate = (config: any, componentName: string, cPath: stri
         componentIndex: `index${indexExtension}`,
         storybook: `${componentName}.stories${indexExtension}`
     };
-
-    const COMPONENT_TEMPLATE = config.includes(CONSTANTS.FEATURES.TS) === ".ts" ? VUE_TEMPLATES.TS_TEMPLATE : VUE_TEMPLATES.JS_TEMPLATE;
+    
+    const COMPONENT_TEMPLATE = config.includes(CONSTANTS.FEATURES.TS) ? VUE_TEMPLATES.TS_TEMPLATE : VUE_TEMPLATES.JS_TEMPLATE;
+    console.log('输出模版',COMPONENT_TEMPLATE);
     
     // Writing main component file
     const componentMainResponse = fs.writeFileSync(

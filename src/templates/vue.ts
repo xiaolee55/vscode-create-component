@@ -25,16 +25,17 @@ export default {
 </template>
 
 <script lang="ts">
-export default {
-    data() {
-        return {
+import { Component, Vue } from 'vue-property-decorator';
 
-        }
+@Component({
+    name: '{{componentName}}',
+    components: {
     },
-    methods: {
+  })
 
-    }
-}
+  export default class {{componentName}} extends Vue {
+
+  }
 </script>
 
 <style scoped src="./styles/index{{StyleExtension}}"></style>
