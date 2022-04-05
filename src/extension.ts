@@ -18,13 +18,10 @@ export function activate(context: vscode.ExtensionContext) {
 
 function validate(componentName: string): string | null {  
 	if (!componentName || componentName === "") {
-	  	return "component name can not be empty";
+	  	return "组件名不能为空";
 	}
-	if (!componentName.match(/^[A-Z]/)) {
-		return "component name has to start with a uppercase alphabet";
-	}
-	if (!componentName.match(/^[0-9a-zA-Z]+$/)) {
-		return "component can't have non-alphanumeric character";
+	if (!/^[a-z-]*$/g.test(componentName)) {
+		return "请输入语义化的组件名(2-3个单词为佳),需遵循烤肉串格式,例子: bank-card-list";
 	}
 	return null;
 }
@@ -32,8 +29,8 @@ function validate(componentName: string): string | null {
 const execute = ({fsPath}: {fsPath: string}) => {
 
 	const componentNameOptions: vscode.InputBoxOptions = {
-		prompt: `Component will be created at ${fsPath}`,
-		placeHolder: "Enter Component Name",
+		prompt: `组件添加在${fsPath}目录`,
+		placeHolder: "输入组件名字",
 		validateInput: validate,
 		ignoreFocusOut: true
 	};

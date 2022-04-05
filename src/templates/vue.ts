@@ -42,15 +42,15 @@ import { Component, Vue } from 'vue-property-decorator';
 `,
     STORYBOOK: `
 import Vue from 'vue';
-import {{componentName}} from './{{componentName}}.vue';
+import {{transComponentName}} from './{{componentName}}.vue';
 
-export default {title: 'Component|{{componentName}}'};
+export default {title: 'Component|{{transComponentName}}'};
 
-export const {{componentName}}Example = () => '<{{componentName}} />';
+export const {{transComponentName}}Example = () => '<{{transComponentName}} />';
 `,
     INDEX: `
-import {{componentName}} from './{{componentName}}.vue';
-export default {{componentName}};    
+import {{transComponentName}} from './{{componentName}}.vue';
+export default {{transComponentName}};    
 `,
     STYLING: ``,
     TESTCASES:  ``,

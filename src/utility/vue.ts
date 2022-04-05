@@ -23,13 +23,18 @@ export const buildVueTemplate = (config: any, componentName: string, cPath: stri
     const COMPONENT_TEMPLATE = config.includes(CONSTANTS.FEATURES.TS) ? VUE_TEMPLATES.TS_TEMPLATE : VUE_TEMPLATES.JS_TEMPLATE;
     console.log('输出模版',COMPONENT_TEMPLATE);
     
+    const transComponentName = componentName.replace(/(\-([a-z]))/g, (match, p1, p2, offset, string) => {
+        // 这里有两个捕获组，第一个捕获组捕获全部并包含了第二个捕获组，所以match等于p1
+        return p2.toUpperCase();
+    })
+
     // Writing main component file
     const componentMainResponse = fs.writeFileSync(
         path.join(
             cPath,
             FILE_NAMES.component
         ),
-        mustache.render(COMPONENT_TEMPLATE, {componentName})
+        mustache.render(COMPONENT_TEMPLATE, {componentName:transComponentName})
     );
 
     // Writing component index file
@@ -38,7 +43,7 @@ export const buildVueTemplate = (config: any, componentName: string, cPath: stri
             cPath,
             FILE_NAMES.componentIndex
         ),
-        mustache.render(VUE_TEMPLATES.INDEX, {componentName})
+        mustache.render(VUE_TEMPLATES.INDEX, {componentName,transComponentName})
     );
     
     // Creating style directory
@@ -53,7 +58,7 @@ export const buildVueTemplate = (config: any, componentName: string, cPath: stri
             cPath,
             FILE_NAMES.styling
         ),
-        mustache.render(VUE_TEMPLATES.STYLING, {componentName})
+        mustache.render(VUE_TEMPLATES.STYLING, {componentName:transComponentName})
     );
 
     // Writing storybook file
@@ -63,7 +68,7 @@ export const buildVueTemplate = (config: any, componentName: string, cPath: stri
                 cPath,
                 FILE_NAMES.storybook
             ),
-            mustache.render(VUE_TEMPLATES.STORYBOOK, {componentName})
+            mustache.render(VUE_TEMPLATES.STORYBOOK, {componentName,transComponentName})
         );
     }
 
@@ -74,7 +79,7 @@ export const buildVueTemplate = (config: any, componentName: string, cPath: stri
                 cPath,
                 FILE_NAMES.test
             ),
-            mustache.render(VUE_TEMPLATES.TESTCASES, {componentName})
+            mustache.render(VUE_TEMPLATES.TESTCASES, {componentName:transComponentName})
         );
     }
 
@@ -85,7 +90,7 @@ export const buildVueTemplate = (config: any, componentName: string, cPath: stri
                 cPath,
                 FILE_NAMES.mock
             ),
-            mustache.render(VUE_TEMPLATES.MOCK, {componentName})
+            mustache.render(VUE_TEMPLATES.MOCK, {componentName:transComponentName})
         );
     }
 
