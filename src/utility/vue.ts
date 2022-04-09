@@ -26,7 +26,7 @@ export const buildVueTemplate = (config: any, componentName: string, cPath: stri
     const transComponentName = componentName.replace(/(\-([a-z]))/g, (match, p1, p2, offset, string) => {
         // 这里有两个捕获组，第一个捕获组捕获全部并包含了第二个捕获组，所以match等于p1
         return p2.toUpperCase();
-    })
+    }).replace(/^\S/, s => s.toUpperCase())
 
     // Writing main component file
     const componentMainResponse = fs.writeFileSync(
@@ -34,7 +34,7 @@ export const buildVueTemplate = (config: any, componentName: string, cPath: stri
             cPath,
             FILE_NAMES.component
         ),
-        mustache.render(COMPONENT_TEMPLATE, {componentName:transComponentName})
+        mustache.render(COMPONENT_TEMPLATE, {componentName:transComponentName,stylingExtension})
     );
 
     // Writing component index file

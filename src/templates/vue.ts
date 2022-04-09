@@ -17,11 +17,11 @@ export default {
 }
 </script>
 
-<style scoped src="./styles/index{{StyleExtension}}"></style>
+<style scoped src="./styles/index{{stylingExtension}}"></style>
 `,
     TS_TEMPLATE: `
 <template>
-    <div></div>
+    <div>{{componentName}}</div>
 </template>
 
 <script lang="ts">
@@ -38,21 +38,29 @@ import { Component, Vue } from 'vue-property-decorator';
   }
 </script>
 
-<style scoped src="./styles/index{{StyleExtension}}"></style>
+<style scoped>
+@import url(./style/index{{stylingExtension}})
+
+</style>
 `,
     STORYBOOK: `
 import Vue from 'vue';
 import {{transComponentName}} from './{{componentName}}.vue';
 
-export default {title: 'Component|{{transComponentName}}'};
+export default {title: '{{transComponentName}}'};
 
-export const {{transComponentName}}Example = () => '<{{transComponentName}} />';
+export const {{transComponentName}}Example = () => ({
+    components: { {{transComponentName}} },
+    template: '<{{transComponentName}}/>'
+});
 `,
     INDEX: `
 import {{transComponentName}} from './{{componentName}}.vue';
 export default {{transComponentName}};    
 `,
-    STYLING: ``,
+    STYLING: `.container{
+        
+    }`,
     TESTCASES:  ``,
     MOCK: ``
 };
